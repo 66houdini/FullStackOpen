@@ -29,67 +29,7 @@ const noteSlice = createSlice({
   }
 })
 
-// createNote(state, action) {
-//   const content = action.payload 
-//   state.push({
-//     content,
-//     important: false,
-//     id: generateId(),
-//   })
-// }
-// const noteReducer = (state =initialState.notes, action) => {
-//   switch(action.type) {
-//     case 'NEW_NOTE':
-//       return state.concat(action.payload)
-//     case 'TOGGLE_IMPORTANCE': {
-//       const id = action.payload.id
-//       const noteToChange = state.find(n => n.id === id)
-//       const changedNote = { 
-//         ...noteToChange, 
-//         important: !noteToChange.important 
-//       }
-//       return state.map(note =>
-//         note.id !== id ? note : changedNote 
-//       )
-//      }
-//     default:
-//       return state
-//   }
-// }
 
-
-
-
-
-// export const createNote = (content) => {
-//   return {
-//     type: 'NEW_NOTE',
-//     payload: {
-//       content,
-//       important: false,
-//       id: generateId()
-//     }
-//   }
-// }
-
-// export const createNote = (state, action) => {
-//   const content = action.payload
-
-//   state.push({
-//     content,
-//     important: false,
-//     id: generateId(),
-//   })
-// }
-
-// export const toggleImportanceOf = (id) => {
-//   return {
-//     type: 'TOGGLE_IMPORTANCE',
-//     payload: { id }
-//   }
-// }
-
-// export default noteReducer
 export const {toggleImportanceOf, appendNote, setNotes } = noteSlice.actions
 
 export const initializeNotes = () => {
