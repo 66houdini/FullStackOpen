@@ -1,53 +1,11 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
+import App from './App'
 
-import { createStore } from 'redux'
-import reducer from './reducer'
+import { CounterContextProvider } from './CounterContext'
 
-const store = createStore(reducer)
+ReactDOM.createRoot(document.getElementById('root')).render(
 
-const App = () => {
-  const good = () => {
-    console.log(store.getState())
-    store.dispatch({
-      type: 'GOOD'
-    })
-  }
-
-  const bad  = () => {
-    store.dispatch({
-      type: 'BAD'
-    })
-  }
-  const ok = () => {
-    store.dispatch({
-      type: 'OK'
-    })
-  }
-  const reset = () => {
-    store.dispatch({
-      type: 'ZERO'
-    })
-  }
-
-  return (
-    <div>
-      <button onClick={good}>good</button> 
-      <button onClick={ok}>ok</button> 
-      <button onClick={bad}>bad</button>
-      <button onClick={reset}>reset stats</button>
-      <div>good {store.getState().good}</div>
-      <div>ok {store.getState().ok}</div>
-      <div>bad {store.getState().bad}</div>
-    </div>
-  )
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'))
-
-const renderApp = () => {
-  root.render(<App />)
-}
-
-renderApp()
-store.subscribe(renderApp)
+  <CounterContextProvider>
+    <App />
+  </CounterContextProvider>
+)
