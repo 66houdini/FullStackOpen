@@ -269,8 +269,7 @@ const App = () => {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
       dispatch(setUser(user));
-      // setLocalUser(user);
-      // console.log("user: ", localUser);
+
       blogService.setToken(user.token);
     }
   }, [dispatch]);

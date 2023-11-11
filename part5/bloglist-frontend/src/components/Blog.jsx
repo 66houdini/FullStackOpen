@@ -1,5 +1,4 @@
 import { useState } from "react";
-import blogService from "../services/blogs";
 import PropTypes from "prop-types";
 import {
   setNotification,
@@ -23,33 +22,8 @@ const Blog = ({ user }) => {
     borderWidth: 1,
     marginBottom: 5,
   };
-  const [visible, setVisible] = useState({});
 
-  const toggleVisibility = (id) => {
-    setVisible((prevVisibleBlogs) => ({
-      ...prevVisibleBlogs,
-      [id]: !prevVisibleBlogs[id],
-    }));
-  };
 
-  const handleLike = async (blog) => {
-    dispatch(likeBlog(blog));
-    dispatch(setNotification(`Liked blog: ${blog.title} by ${blog.author}`));
-    setTimeout(() => {
-      dispatch(clearNotification());
-    }, 5000);
-  };
-
-  const handleDelete = async (blog) => {
-    if (window.confirm(`Remove blog ${blog.title} by ${blog.author}`)) {
-      try {
-        dispatch(deleteBlog(blog));
-        // await blogService.deleteBlog(blog.id);
-      } catch (err) {
-        console.log("Error deleting blog: ", err);
-      }
-    }
-  };
 
   return (
     <div>
@@ -60,24 +34,7 @@ const Blog = ({ user }) => {
               {blog.title} {blog.author}
             </Link>
           </div>
-          {/* <button onClick={() => toggleVisibility(blog.id)}>
-              {visible[blog.id] ? "hide" : "view"}
-            </button>
-            {visible[blog.id] && (
-              <div>
-                <p>{blog.url}</p>
-                <p>
-                  likes {blog.likes}
-                  <button onClick={() => handleLike(blog)}>like</button>
-                </p>
-                <p>{blog?.user?.name}</p>
-                {user && user.id === blog?.user?.id && (
-                  <button className="delete" onClick={() => handleDelete(blog)}>
-                    remove
-                  </button>
-                )}
-              </div>
-            )} */}
+          
         </div>
       ))}
     </div>
@@ -85,7 +42,6 @@ const Blog = ({ user }) => {
 };
 
 Blog.propTypes = {
-  // blog: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
 };
 export default Blog;
