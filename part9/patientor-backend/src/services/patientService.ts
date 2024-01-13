@@ -13,7 +13,18 @@ const addPatients = (entry:NewPatientEntry): PatientsEntry => {
     patients.push(newPatientEntry);
     return newPatientEntry;
 }
+
+const getPatient = (id :string): PatientsEntry => {
+    const patient = patients.find(p => p.id === id)
+    if(patient){
+        return {...patient, entries:[]};
+    }else{
+        throw new Error("Patient not found");
+    }
+}
+
 export default {
     getPatients,
-    addPatients
+    addPatients,
+    getPatient
 }

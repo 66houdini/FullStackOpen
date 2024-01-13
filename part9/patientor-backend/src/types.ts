@@ -17,6 +17,10 @@ export interface PatientsEntry {
     ssn:string;
     gender: Gender;
     occupation:string;
+
+    entries: DiagnosesEntry[];
 }
+
+export type NonSensitivePatient = Omit<PatientsEntry, "ssn" | "entries">;
 
 export type NewPatientEntry = Omit<PatientsEntry, "id">;
